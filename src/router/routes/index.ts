@@ -4,10 +4,17 @@ export const LoginRoute: any = {
   component: () => import("/@/views/sys/login/Login.vue"),
 };
 
-export const HomeRoute: any = {
+export const RootRoute: any = {
   path: "/",
+  name: "Root",
+  // 根目录设置路由重定向
+  redirect: "/login",
+};
+
+export const HomeRoute: any = {
+  path: "/home",
   name: "Home",
   component: () => import("/@/views/sys/home/Home.vue"),
 };
 
-export const basicRoutes = [LoginRoute, HomeRoute];
+export const basicRoutes = [LoginRoute, HomeRoute, RootRoute];
