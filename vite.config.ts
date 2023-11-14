@@ -16,4 +16,11 @@ export default defineConfig({
   resolve: {
     alias,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "/@/design/index.scss";',
+      },
+    },
+  },
 });

@@ -1,0 +1,30 @@
+$distance: 5, 10, 15, 20, 25, 30, 50, 100, 150;
+
+@each $d in $distance {
+//   $i: index($distance, $d);
+  .mg-tb-#{$d} {
+    margin-top: #{$d}px;
+    margin-bottom: #{$d}px;
+  }
+  .mg-lr-#{$d} {
+    margin-left: #{$d}px;
+    margin-right: #{$d}px;
+  }
+
+  .mg-#{$d} {
+    margin: #{$d}px;
+  }
+
+  .pd-tb-#{$d} {
+    padding-top: #{$d}px;
+    padding-bottom: #{$d}px;
+  }
+  .pd-lr-#{$d} {
+    padding-left: #{$d}px;
+    padding-right: #{$d}px;
+  }
+
+  .pd-#{$d} {
+    padding: #{$d}px;
+  }
+}
