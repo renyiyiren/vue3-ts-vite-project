@@ -31,7 +31,17 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { usePermissionStore } from "/@/store/modules/permission";
+import { useUserStore } from "/@/store/modules/user";
+const permissionStore = usePermissionStore();
+const userStore = useUserStore();
+setTimeout(() => {
+  permissionStore.buildRoutesAction();
+  // 动态添加route
+  // userStore.routePush();
+}, 1000);
+</script>
 <style scoped lang="scss">
 $login-box: "#{$namespace}-app-layout";
 

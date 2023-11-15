@@ -10,7 +10,7 @@ const getRouteNames = (array: any[]) =>
   });
 getRouteNames(basicRoutes);
 
-const router = createRouter({
+export const router = createRouter({
   // hash 模式
   history: createWebHashHistory(),
   routes: basicRoutes, // `routes: routes` 的缩写

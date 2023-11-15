@@ -11,6 +11,8 @@ Object.keys(modules).forEach((key) => {
   routeModuleList.push(...modList);
 });
 
+export const asyncRoute = [...routeModuleList];
+
 export const LoginRoute: any = {
   path: "/login",
   name: "Login",
@@ -30,9 +32,4 @@ export const HomeRoute: any = {
   component: () => import("/@/views/sys/home/Home.vue"),
 };
 
-export const basicRoutes = [
-  LoginRoute,
-  HomeRoute,
-  RootRoute,
-  ...routeModuleList,
-];
+export const basicRoutes = [LoginRoute, HomeRoute, RootRoute];
