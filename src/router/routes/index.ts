@@ -1,3 +1,16 @@
+const routeModuleList: any[] = [];
+// 引入路由数据
+
+const modules: any = import.meta.glob("./modules/**/*.ts", {
+  eager: true,
+});
+
+Object.keys(modules).forEach((key) => {
+  const mod = modules[key].default || {};
+  const modList = Array.isArray(mod) ? [...mod] : [mod];
+  routeModuleList.push(...modList);
+});
+
 export const LoginRoute: any = {
   path: "/login",
   name: "Login",
@@ -17,4 +30,9 @@ export const HomeRoute: any = {
   component: () => import("/@/views/sys/home/Home.vue"),
 };
 
-export const basicRoutes = [LoginRoute, HomeRoute, RootRoute];
+export const basicRoutes = [
+  LoginRoute,
+  HomeRoute,
+  RootRoute,
+  ...routeModuleList,
+];
