@@ -5,12 +5,12 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
 
   // ComponentCustomProperties设计用于声明全局属性类型
-  // import { ComponentCustomProperties } from "@vue/runtime-core";
-  // declare module "@vue/runtime-core" {
-  //   interface ComponentCustomProperties {
-  //     themeUser: any; // 这里填类型
-  //   }
-  // }
-  // export { component, ComponentCustomProperties };
+  import { ComponentCustomProperties } from "@vue/runtime-core";
+  declare module "@vue/runtime-core" {
+    interface ComponentCustomProperties {
+      useThemeConfigStore: any; // 这里填类型
+    }
+  }
+  export { component, ComponentCustomProperties };
   export default component;
 }

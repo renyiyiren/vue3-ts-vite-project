@@ -2,6 +2,7 @@ export function configThemePlugin(): any {
   const plugin = {
     preprocessorOptions: {
       less: {
+        // 引入全局样式
         additionalData: '@import "/@/design/index.less";',
         javascriptEnabled: true,
       },
