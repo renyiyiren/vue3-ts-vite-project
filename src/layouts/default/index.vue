@@ -6,6 +6,7 @@
 import { defineComponent } from "vue";
 import { Layout } from "ant-design-vue";
 export default defineComponent({
+  name: "DefaultLayout",
   components: {
     Layout,
   },

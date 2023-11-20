@@ -4,48 +4,97 @@
     <div class="right">
       <div class="login-form">
         <div class="logo"></div>
-        <div class="user-form">
-          <p>用户登录</p>
-          <a-row class="mg-tb-15">
-            <a-col :span="18" :push="3">
-              <a-input
-                class="col col-8"
-                addonBefore="账号："
-                placeholder="请输入账号"
-              />
-            </a-col>
-          </a-row>
-          <a-row>
-            <a-col :span="18" :push="3">
-              <a-input
-                class="col col-8"
-                addonBefore="密码："
-                placeholder="请输入密码"
-              />
-            </a-col>
-          </a-row>
-        </div>
-        <a-button type="primary">登录</a-button>
+        <a-form>
+          <div class="user-form">
+            <p>用户登录</p>
+            <a-row>
+              <a-col :span="18" :push="3">
+                <a-form-item v-bind="validateInfos.username">
+                  <a-input
+                    class="col col-8"
+                    addonBefore="账号："
+                    placeholder="请输入账号"
+                    v-model:value="user.username"
+                  />
+                </a-form-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :span="18" :push="3">
+                <a-form-item v-bind="validateInfos.password">
+                  <a-input
+                    class="col col-8"
+                    addonBefore="密码："
+                    placeholder="请输入密码"
+                    v-model:value="user.password"
+                  />
+                </a-form-item>
+              </a-col>
+            </a-row>
+          </div>
+          <a-form-item>
+            <a-button
+              value="large"
+              type="primary"
+              html-type="submit"
+              @click.prevent="onSubmit"
+            >
+              登录</a-button
+            >
+          </a-form-item>
+        </a-form>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { usePermissionStore } from "/@/store/modules/permission";
-import { useUserStore } from "/@/store/modules/user";
-const permissionStore = usePermissionStore();
-const userStore = useUserStore();
-setTimeout(() => {
-  permissionStore.buildRoutesAction();
-  // 动态添加route
-  // userStore.routePush();
-}, 1000);
-</script>
-<style scoped lang="scss">
-$login-box: "#{$namespace}-app-layout";
+<script setup lang="ts">
+import { reactive, toRaw } from "vue";
+import { Form } from "ant-design-vue";
 
-.#{$login-box} {
+const useForm = Form.useForm;
+
+const user = reactive({
+  username: "",
+  password: "",
+});
+
+const { resetFields, validate, validateInfos } = useForm(
+  user,
+  reactive({
+    username: [
+      {
+        required: true,
+        message: "请输入用户名！",
+      },
+    ],
+    password: [
+      {
+        required: true,
+        message: "请输入密码！",
+      },
+    ],
+  })
+);
+
+const onSubmit = () => {
+  validate()
+    .then((res) => {
+      console.log(res, toRaw(loginRule));
+    })
+    .catch((err) => {
+      console.log("error", err);
+    });
+};
+
+const reset = () => {
+  resetFields();
+};
+</script>
+<style scoped lang="less">
+@login-box: ~"@{namespace}-app-layout";
+
+.@{login-box} {
   display: flex;
   width: 100%;
   height: 100vh;
@@ -62,7 +111,7 @@ $login-box: "#{$namespace}-app-layout";
     .login-form {
       position: absolute;
       height: 30%;
-      width: 60%;
+      width: 40%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

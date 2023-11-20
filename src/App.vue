@@ -1,8 +1,22 @@
 <script setup lang="ts"></script>
 
 <template>
-  <router-view></router-view>
+  <a-config-provider :theme="themeUser">
+    <button @click="changFn">change</button>
+    <router-view></router-view>
+  </a-config-provider>
 </template>
+<script lang="ts" setup>
+import { reactive } from "vue";
+let themeUser: data = reactive({
+  token: {
+    colorPrimary: "#00b96b",
+  },
+});
 
-<style scoped>
-</style>
+const changFn = () => {
+  themeUser.token.colorPrimary = "red";
+};
+</script>
+
+<style lang="less" scoped></style>

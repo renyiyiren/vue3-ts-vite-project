@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 import { resolve } from "path";
+import { createVitePlugins } from "./src/vite/index";
+import { configThemePlugin } from "./src/vite/plugin/theme";
 
 const pathResolve = (dir: string): any => {
   return resolve(__dirname, ".", dir);
@@ -12,15 +14,9 @@ const alias: Record<string, string> = {
 };
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: createVitePlugins(),
   resolve: {
     alias,
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@import "/@/design/index.scss";',
-      },
-    },
-  },
+  css: configThemePlugin(),
 });

@@ -13,7 +13,7 @@ export const useUserStore = defineStore({
   },
   actions: {
     async afterLoginAction() {
-      if (this.getToken) return null;
+      // if (this.getToken) return null;
       // 判断用户权限
       //   const userInfo = await this.getUserInfo();
     },

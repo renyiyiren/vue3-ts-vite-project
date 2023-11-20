@@ -1,5 +1,5 @@
 import { App } from "vue";
-import { createRouter, createWebHashHistory } from "vue-router";
+import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import { basicRoutes } from "./routes";
 
 // 白名单应该包含基本静态路由
@@ -13,7 +13,7 @@ getRouteNames(basicRoutes);
 export const router = createRouter({
   // hash 模式
   history: createWebHashHistory(),
-  routes: basicRoutes, // `routes: routes` 的缩写
+  routes: basicRoutes as unknown as RouteRecordRaw[], // `routes: routes` 的缩写
 });
 
 export function setUpdateRouter(app: App<Element>) {
