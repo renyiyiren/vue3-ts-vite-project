@@ -1,25 +1,35 @@
 import { defineStore } from "pinia";
 import { store } from "/@/store";
+import { theme } from "ant-design-vue";
+import { ref } from "vue";
 
+type ThemeName = "light" | "dark";
 export const useThemeConfig = defineStore({
   id: "app-theme-config",
-  state: (): any => ({
-    themeInfo: {
-      token: {
-        colorPrimary: "#00b96b",
-        primaryColor: "#52c41a", // 全局主色
-        errorColor: "#f05b5b", // 错误色
+  state: (): any => {
+    return {
+      // 主题名称
+      themeConfig: {
+        algorithm: theme.defaultAlgorithm,
       },
-    },
-  }),
+      themeName: "light",
+    };
+  },
   getters: {
     getThemeConfig() {
-      return this.themeInfo;
+      document.documentElement.setAttribute("data-theme", this.themeName);
+      return this.themeConfig;
     },
   },
   actions: {
-    changeThemeConfig(color) {
-      this.toke.colorPrimary = color;
+    changeThemeConfig(checked: boolean): void {
+      document.documentElement.setAttribute(
+        "data-theme",
+        checked ? "light" : "dark"
+      );
+      this.themeConfig.algorithm = checked
+        ? theme.defaultAlgorithm
+        : theme.darkAlgorithm;
     },
   },
 });

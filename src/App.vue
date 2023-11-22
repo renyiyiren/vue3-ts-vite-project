@@ -6,6 +6,7 @@
   </a-config-provider>
 </template>
 <script lang="ts" setup>
+import "/@/design/index.less";
 import { useThemeConfig } from "/@/store/modules/theme";
 const useThemeConfigStore = useThemeConfig();
 </script>

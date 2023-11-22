@@ -3,33 +3,33 @@
 @length:length(@distance);
 // @item: extract(@colors, @index);
 
-.for(@d,@i: 1) when (@i =< length(@d)){
-  .mg-tb-@{d} {
-    margin-top: '@{d}px';
-    margin-bottom: '@{d}px';
+each(@distance, {
+  .mg-tb-@{value} {
+    margin-top: ~'@{value}px';
+    margin-bottom: ~'@{value}px';
   }
-  .mg-lr-@{d} {
-    margin-left: '@{d}px';
-    margin-right: '@{d}px';
-  }
-
-  .mg-@{d} {
-    margin: '@{d}px';
+  .mg-lr-@{value} {
+    margin-left: ~'@{value}px';
+    margin-right: ~'@{value}px';
   }
 
-  .pd-tb-@{d} {
-    padding-top: '@{d}px';
-    padding-bottom: '@{d}px';
-  }
-  .pd-lr-@{d} {
-    padding-left: '@{d}px';
-    padding-right: '@{d}px';
+  .mg-@{value} {
+    margin: ~'@{value}px';
   }
 
-  .pd-@{d} {
-    padding: '@{d}px';
+  .pd-tb-@{value} {
+    padding-top: ~'@{value}px';
+    padding-bottom: ~'@{value}px';
   }
-}
+  .pd-lr-@{value} {
+    padding-left: ~'@{value}px';
+    padding-right: ~'@{value}px';
+  }
+
+  .pd-@{value} {
+    padding: ~'@{value}px';
+  }
+})
 // sass
 // @each $d in $distance {
 // //   $i: index($distance, $d);

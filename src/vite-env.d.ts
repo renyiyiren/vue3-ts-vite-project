@@ -11,6 +11,10 @@ declare module "*.vue" {
       useThemeConfigStore: any; // 这里填类型
     }
   }
-  export { component, ComponentCustomProperties };
   export default component;
 }
+
+// declare module "*.svg" {
+//   const src: string;
+//   export default src;
+// }

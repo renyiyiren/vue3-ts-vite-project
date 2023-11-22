@@ -1,4 +1,5 @@
 <template>
+  <Menu></Menu>
   <div class="basic-app-layout">
     <div class="left"></div>
     <div class="right">
@@ -49,8 +50,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, toRaw } from "vue";
+import { reactive } from "vue";
 import { Form } from "ant-design-vue";
+// import MenuVue from "/@/components/menu.vue";
 
 const useForm = Form.useForm;
 
@@ -59,7 +61,7 @@ const user = reactive({
   password: "",
 });
 
-const { resetFields, validate, validateInfos } = useForm(
+const { validate, validateInfos } = useForm(
   user,
   reactive({
     username: [
@@ -79,16 +81,10 @@ const { resetFields, validate, validateInfos } = useForm(
 
 const onSubmit = () => {
   validate()
-    .then((res) => {
-      console.log(res, toRaw(loginRule));
-    })
+    .then(() => {})
     .catch((err) => {
       console.log("error", err);
     });
-};
-
-const reset = () => {
-  resetFields();
 };
 </script>
 <style scoped lang="less">
@@ -102,7 +98,7 @@ const reset = () => {
   .left {
     width: 50%;
     height: 100%;
-    background-color: #7fd6fc;
+    background-color: var(--primaryColor);
   }
   .right {
     position: relative;
@@ -120,7 +116,7 @@ const reset = () => {
       .logo {
         width: 80%;
         height: 40px;
-        background-color: #7fc4e2;
+        background-color: var(--primaryColor);
         margin: 30px auto 10px;
       }
       .user-form {

@@ -1,11 +1,12 @@
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite"; // 按需组件自动导入
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
+import vueJsx from "@vitejs/plugin-vue-jsx"; // 配置vue使用jsx
 
 export function createVitePlugins() {
   const vitePlugins: any = [
     vue(),
-    // vueJsx(),
+    vueJsx(),
     Components({
       dts: true, //生成components.d.ts 全局定义文件
       resolvers: [
