@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { store } from "/@/store";
 import { theme } from "ant-design-vue";
-import { ref } from "vue";
 
 type ThemeName = "light" | "dark";
 export const useThemeConfig = defineStore({
